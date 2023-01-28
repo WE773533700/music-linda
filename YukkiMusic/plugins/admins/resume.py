@@ -22,7 +22,7 @@ RESUME_COMMAND = get_command("RESUME_COMMAND")
 
 
 @app.on_message(
-    filters.command(["كملي","لنداكملي","استمري","/resume],"")
+    filters.command(["استمري","التالي","كملي"],"")
     & filters.group
     & ~filters.edited
     & ~BANNED_USERS
