@@ -38,9 +38,9 @@ from YukkiMusic.utils.stream.stream import stream
 # Command
 PLAY_COMMAND = get_command("PLAY_COMMAND")
 
+
 @app.on_message(
-    command("شغل","تشغيل","ران شغلي","شغلي"],"")
-    & filters.channel
+    filters.command(["قناه","قناة","شغل","تشغيل"])
     & ~filters.edited
     & ~BANNED_USERS
 )
@@ -63,8 +63,8 @@ async def play_commnd(
     slider = None
     plist_type = None
     spotify = None
-    user_id = None
-    user_name = None
+    user_id = message.from_user.id if message.from_user else "1121532100"
+    user_name = message.from_user.first_name if message.from_user else "None"
     audio_telegram = (
         (
             message.reply_to_message.audio
