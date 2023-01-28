@@ -71,11 +71,11 @@ def PlayWrapper(command):
                 return await message.reply_photo(
                     photo=PLAYLIST_IMG_URL,
                     caption=_["playlist_1"],
-                    reply_markup=InlineKeyboardMarkup(buttons),)
-              
+                    reply_markup=InlineKeyboardMarkup(buttons),
+                )
         if message.command[0][0] == "c":
             chat_id = await get_cmode(message.chat.id)
-            if chat_id:
+            if chat_id is None:
                 return await message.reply_text(_["setting_12"])
             try:
                 chat = await app.get_chat(chat_id)
@@ -88,7 +88,7 @@ def PlayWrapper(command):
         playmode = await get_playmode(message.chat.id)
         playty = await get_playtype(message.chat.id)
         if playty != "Everyone":
-            if not SUDOERS:
+            if message.from_user.id not in SUDOERS:
                 admins = adminlist.get(message.chat.id)
                 if not admins:
                     return await message.reply_text(_["admin_18"])
