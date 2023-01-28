@@ -40,7 +40,7 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
 
 
 @app.on_message(
-    filters.command(["شغل","تشغيل","ران شغلي","شغلي"],"")
+    filters.command(["شغل","تشغيل","ران شغلي","شغلي","/play,],"")
     & ~filters.edited
     & ~BANNED_USERS
 )
